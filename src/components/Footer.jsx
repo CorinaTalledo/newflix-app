@@ -7,10 +7,10 @@ export default function Footer() {
       sx={{
         p: 2,
         border: "5px solid grey",
-        position: "fixed",
+        /* position: "fixed",
         bottom: 0,
         left: 0,
-        right: 0,
+        right: 0, */
       }}
     >
       Footer

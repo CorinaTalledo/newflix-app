@@ -1,15 +1,25 @@
-import Card from "@mui/material/Card";
-import CardMedia from "@mui/material/CardMedia";
-import Typography from "@mui/material/Typography";
-import { CardActionArea } from "@mui/material";
-import Box from "@mui/material/Box";
+import {
+  Card,
+  CardMedia,
+  Typography,
+  Box,
+  CardActionArea,
+  List,
+  ListItem,
+  ListItemIcon,
+  ListItemText,
+} from "@mui/material";
 
-import List from "@mui/material/List";
-import ListItem from "@mui/material/ListItem";
-import ListItemIcon from "@mui/material/ListItemIcon";
-import ListItemText from "@mui/material/ListItemText";
+/* import { useParams } from "react-router-dom";
+import { useState } from "react"; */
 
 export default function DetailMovie() {
+  /*   const { idMovie } = useParams();
+
+  const [movieDetail, setMovieDetail] = useState();
+
+  console.log(idMovie); */
+
   return (
     <div>
       <Card sx={{ maxWidth: 345 }}>
