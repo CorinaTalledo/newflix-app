@@ -11,40 +11,6 @@ export default function Home() {
   const { popularMovies, getPopularMovies, topRatedMovies, getTopRatedMovies } =
     useMovies();
 
-  // const [index, setIndex] = useState(0);
-
-  // const handleScrollRight = () => {
-  //   setIndex(Math.min(index + 1, popularMovies.length - 1));
-  // };
-
-  // const handleScrollLeft = () => {
-  //   setIndex(Math.max(index - 1, 0));
-  // };
-
-  // const responsive = {
-  //   desktop: {
-  //     breakpoint: { max: 3000, min: 1024 },
-  //     items: 4,
-  //     slidesToSlide: 4,
-  //   },
-  //   tablet: {
-  //     breakpoint: { max: 1024, min: 464 },
-  //     items: 2,
-  //     slidesToSlide: 2,
-  //   },
-  //   mobile: {
-  //     breakpoint: { max: 464, min: 0 },
-  //     items: 1,
-  //     slidesToSlide: 1,
-  //   },
-  // };
-
-  /*   useEffect(() => {
-    getPeopleCarrusel();
-  }, []);
-
-  console.log(initialCarrusel); */
-
   useEffect(() => {
     getPopularMovies();
   }, []);
@@ -52,8 +18,6 @@ export default function Home() {
   useEffect(() => {
     getTopRatedMovies();
   }, []);
-
-  // console.log(popularMovies);
 
   return (
     <Box component="section" sx={{ border: "1px dashed grey" }}>

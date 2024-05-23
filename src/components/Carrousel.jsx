@@ -10,9 +10,12 @@ import {
 } from "@mui/material";
 import useMovies from "../hooks/useMovies";
 import { useEffect } from "react";
+import { useNavigate } from "react-router-dom";
 
 export default function Carrousel() {
   const { initialCarrusel, getPopularCarrusel } = useMovies();
+
+  const navigate = useNavigate();
 
   useEffect(() => {
     getPopularCarrusel();
@@ -47,9 +50,10 @@ export default function Carrousel() {
       component="section"
       sx={{
         width: "100vw",
-        height: "60vh",
+        height: "500px",
         overflow: "hidden",
-        position: "relative",
+        /*         position: "relative",
+         */
       }}
     >
       <Carousel
@@ -99,7 +103,7 @@ export default function Carrousel() {
               sx={{
                 width: "100%",
                 height: "100%",
-                objectFit: "cover",
+                objectFit: "fill",
                 position: "relative",
               }}
             />
@@ -122,7 +126,12 @@ export default function Carrousel() {
                   {item.overview}
                 </Typography>
 
-                <Button variant="contained">See more</Button>
+                <Button
+                  variant="contained"
+                  onClick={() => navigate(`/movie/${item.id}`)}
+                >
+                  See more
+                </Button>
               </CardContent>
             </Box>
           </Card>
