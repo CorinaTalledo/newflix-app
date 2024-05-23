@@ -8,6 +8,7 @@ import Search from "./views/Search";
 import Error404 from "./views/Error404";
 import Footer from "./components/Footer";
 import CssBaseline from "@mui/material/CssBaseline";
+import MyList from "./views/MyList";
 
 function App() {
   return (
@@ -20,6 +21,7 @@ function App() {
           <Route path="/movies" element={<ContainMovies />} />
           <Route path="/movie/:idMovie" element={<DetailMovie />} />
           <Route path="/search" element={<Search />} />
+          <Route path="/my-list" element={<MyList />} />
           <Route path="*" element={<Error404 />} />
         </Routes>
         <Footer />

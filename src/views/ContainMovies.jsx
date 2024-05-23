@@ -11,7 +11,7 @@ export default function ContainMovies() {
         Ultimos Lanzamientos oooo Populares
       </Typography>
 
-      <CardMovie />
+      {/* <CardMovie /> */}
 
       <Pagination
       /* page="1"

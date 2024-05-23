@@ -25,7 +25,7 @@ export default function Search() {
         </IconButton>
       </Paper>
 
-      <CardMovie />
+      {/* <CardMovie /> */}
     </Box>
   );
 }
