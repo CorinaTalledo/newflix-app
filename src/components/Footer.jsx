@@ -1,19 +1,18 @@
-import Box from "@mui/material/Box";
+import { Typography, Link, Box } from "@mui/material";
 
 export default function Footer() {
   return (
-    <Box
-      component="section"
-      sx={{
-        p: 2,
-        border: "5px solid grey",
-        /* position: "fixed",
-        bottom: 0,
-        left: 0,
-        right: 0, */
-      }}
-    >
-      Footer
+    <Box my="2%" sx={{ border: "3px solid white", color: "white" }}>
+      <Typography variant="subtitle2" display="block">
+        Done with ♥ by {""}
+        <Link
+          href="https://github.com/CorinaTalledo"
+          underline="hover"
+          target="_blank"
+        >
+          Coco Talledo
+        </Link>
+      </Typography>
     </Box>
   );
 }

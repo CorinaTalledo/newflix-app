@@ -1,50 +1,58 @@
-import AppBar from "@mui/material/AppBar";
-import Box from "@mui/material/Box";
-import Toolbar from "@mui/material/Toolbar";
-import IconButton from "@mui/material/IconButton";
-import Typography from "@mui/material/Typography";
-import Menu from "@mui/material/Menu";
+import {
+  AppBar,
+  Box,
+  Toolbar,
+  IconButton,
+  Typography,
+  Menu,
+  Container,
+  Avatar,
+  Button,
+  Tooltip,
+  MenuItem,
+} from "@mui/material";
 import MenuIcon from "@mui/icons-material/Menu";
-import Container from "@mui/material/Container";
-import Avatar from "@mui/material/Avatar";
-import Button from "@mui/material/Button";
-import Tooltip from "@mui/material/Tooltip";
-import MenuItem from "@mui/material/MenuItem";
+import PlaylistPlayIcon from "@mui/icons-material/PlaylistPlay";
 import { useState } from "react";
+import { useNavigate } from "react-router-dom";
 
-const pages = ["Products", "Pricing", "Blog"];
+// const pages = [
+//   { name: "Home", path: "/" },
+//   { name: "Last Realeses", path: "/movies" },
+//   { name: "Popular", path: "/movies" },
+//   { name: "Search", path: "/search" },
+// ];
+// const settings = ["Profile", "Account", "Dashboard", "Logout"];
 
 function Header() {
   const [anchorElNav, setAnchorElNav] = useState(null);
-  /*   const [anchorElUser, setAnchorElUser] = useState(null);
-   */
+  const [anchorElUser, setAnchorElUser] = useState(null);
+
   const handleOpenNavMenu = (event) => {
     setAnchorElNav(event.currentTarget);
+  };
+  const handleOpenUserMenu = (event) => {
+    setAnchorElUser(event.currentTarget);
   };
 
   const handleCloseNavMenu = () => {
     setAnchorElNav(null);
   };
 
+  const handleCloseUserMenu = () => {
+    setAnchorElUser(null);
+  };
+
+  const navigate = useNavigate();
+
   return (
-    <AppBar
-      position="static"
-      sx={{
-        border: "5px solid red",
-        /* width: "100vw", */
-        /* position: "fixed", */
-        top: 0,
-        /* left: 0,
-        right: 0, */
-      }}
-    >
+    <AppBar position="static" sx={{ backgroundColor: "#212121" }}>
       <Container maxWidth="xl">
         <Toolbar disableGutters>
           <Typography
             variant="h6"
             noWrap
             component="a"
-            href="#app-bar-with-responsive-menu"
             sx={{
               mr: 2,
               display: { xs: "none", md: "flex" },
@@ -53,11 +61,16 @@ function Header() {
               letterSpacing: ".3rem",
               color: "inherit",
               textDecoration: "none",
+              cursor: "pointer",
             }}
+            onClick={() => navigate("/")}
           >
-            LOGO
+            NOWFLIX
           </Typography>
+
+          {/* MOBILE */}
           <Box sx={{ flexGrow: 1, display: { xs: "flex", md: "none" } }}>
+            {/* ---------------------- */}
             <IconButton
               size="large"
               aria-label="account of current user"
@@ -86,18 +99,27 @@ function Header() {
                 display: { xs: "block", md: "none" },
               }}
             >
-              {pages.map((page) => (
-                <MenuItem key={page} onClick={handleCloseNavMenu}>
-                  <Typography textAlign="center">{page}</Typography>
+              {/* {pages.map((page) => (
+                <MenuItem
+                  key={page.name}
+                  onClick={() => {
+                    navigate(page.path);
+                    handleCloseNavMenu();
+                  }}
+                >
+                  <Typography textAlign="center">{page.name}</Typography>
                 </MenuItem>
-              ))}
+              ))} */}
             </Menu>
           </Box>
+
+          {/* FIN DE MOBILE */}
+
+          {/* DESKTOP */}
           <Typography
             variant="h5"
             noWrap
             component="a"
-            href="#app-bar-with-responsive-menu"
             sx={{
               mr: 2,
               display: { xs: "flex", md: "none" },
@@ -107,27 +129,101 @@ function Header() {
               letterSpacing: ".3rem",
               color: "inherit",
               textDecoration: "none",
+              cursor: "pointer",
             }}
+            onClick={() => navigate("/")}
           >
-            LOGO
+            NOWFLIX
           </Typography>
+
           <Box sx={{ flexGrow: 1, display: { xs: "none", md: "flex" } }}>
-            {pages.map((page) => (
-              <Button
-                key={page}
-                onClick={handleCloseNavMenu}
-                sx={{ my: 2, color: "white", display: "block" }}
-              >
-                {page}
-              </Button>
-            ))}
+            <Button
+              onClick={() => {
+                navigate("/");
+                handleCloseNavMenu();
+              }}
+              sx={{ my: 2, color: "white", display: "block" }}
+            >
+              HOME
+            </Button>
+
+            <Button
+              onClick={() => {
+                navigate("/movies");
+                handleCloseNavMenu();
+              }}
+              sx={{ my: 2, color: "white", display: "block" }}
+            >
+              LAST RELEASES
+            </Button>
+
+            <Button
+              onClick={() => {
+                navigate("/movies");
+                handleCloseNavMenu();
+              }}
+              sx={{ my: 2, color: "white", display: "block" }}
+            >
+              POPULAR
+            </Button>
+
+            <Button
+              onClick={() => {
+                navigate("/search");
+                handleCloseNavMenu();
+              }}
+              sx={{ my: 2, color: "white", display: "block" }}
+            >
+              SEARCH
+            </Button>
           </Box>
+
+          {/* TODO LO RELACIONADO AL AVATAR */}
           <Box sx={{ flexGrow: 0 }}>
-            <Tooltip title="Open settings">
-              <IconButton /* onClick={handleOpenUserMenu} */ sx={{ p: 0 }}>
+            <Button
+              component="label"
+              role={undefined}
+              variant="outlined"
+              color="inherit"
+              tabIndex={-1}
+              startIcon={<PlaylistPlayIcon />}
+              onClick={() => {
+                navigate("/my-list");
+                handleCloseNavMenu();
+              }}
+            >
+              My List
+              {/* <VisuallyHiddenInput type="file" /> */}
+            </Button>
+
+            {/* <IconButton onClick={handleOpenUserMenu} sx={{ p: 0 }}>
                 <Avatar alt="Remy Sharp" src="/static/images/avatar/2.jpg" />
-              </IconButton>
-            </Tooltip>
+              </IconButton> */}
+            <Menu
+              sx={{ mt: "45px" }}
+              id="menu-appbar"
+              anchorEl={anchorElUser}
+              anchorOrigin={{
+                vertical: "top",
+                horizontal: "right",
+              }}
+              keepMounted
+              transformOrigin={{
+                vertical: "top",
+                horizontal: "right",
+              }}
+              open={Boolean(anchorElUser)}
+              onClose={handleCloseUserMenu}
+            >
+              {/* Lo que se despliega del avatar */}
+              {/* {settings.map((setting) => (
+                <MenuItem key={setting} onClick={handleCloseUserMenu}>
+                  <Typography textAlign="center">{setting}</Typography>
+                </MenuItem>
+              ))} */}
+
+              {/* -------------------------- */}
+            </Menu>
           </Box>
         </Toolbar>
       </Container>

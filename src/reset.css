@@ -29,6 +29,8 @@ body {
   place-items: center;
   min-width: 320px;
   min-height: 100vh;
+  color: white;
+  background-image: linear-gradient(to right bottom, #212121, #272728, #2d2e2f, #333436, #393b3d);
 }
 
 h1 {
@@ -56,6 +58,7 @@ button:focus,
 button:focus-visible {
   outline: 4px auto -webkit-focus-ring-color;
 }
+
 
 @media (prefers-color-scheme: light) {
   :root {
