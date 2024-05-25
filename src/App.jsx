@@ -18,7 +18,7 @@ function App() {
         <Header />
         <Routes>
           <Route path="/" element={<Home />} />
-          <Route path="/movies" element={<ContainMovies />} />
+          <Route path="/:category" element={<ContainMovies />} />
           <Route path="/movie/:idMovie" element={<DetailMovie />} />
           <Route path="/search" element={<Search />} />
           <Route path="/my-list" element={<MyList />} />

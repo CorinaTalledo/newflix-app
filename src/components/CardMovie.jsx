@@ -5,11 +5,19 @@ import {
   Typography,
   CardActionArea,
 } from "@mui/material";
+import { useNavigate } from "react-router-dom";
 
 export default function CardMovie({ movie }) {
+  const navigate = useNavigate();
+
   return (
     <Card sx={{ width: 320, height: 220 }}>
-      <CardActionArea sx={{ height: "100%" }}>
+      <CardActionArea
+        sx={{ height: "100%" }}
+        onClick={() => {
+          navigate(`/movie/${movie.id}`);
+        }}
+      >
         <CardMedia
           component="img"
           height="80%"

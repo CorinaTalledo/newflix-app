@@ -8,19 +8,26 @@ export default function useMovies() {
   const [initialCarrusel, setInitialCarrusel] = useState([]);
   const [oneMovie, setOneMovie] = useState({});
   const [trailer, setTrailer] = useState();
+  // const [releases, setReleases] = useState([]);
+
+  const [movies, setMovies] = useState([]);
+
+  const [totalPages, setTotalPages] = useState(1);
+  const [page, setPage] = useState(1);
 
   const { idMovie } = useParams();
 
-  async function getPopularMovies() {
+  // Ocultar la api key
+
+  async function getMoviesByCategory(category) {
     try {
       const response = await axios.get(
-        "https://api.themoviedb.org/3/movie/popular",
+        `https://api.themoviedb.org/3/movie/${category}?page=${page}`,
         {
           params: {
             include_adult: false,
             include_video: false,
             language: "en-US",
-            page: 1,
           },
           headers: {
             accept: "application/json",
@@ -30,7 +37,8 @@ export default function useMovies() {
         }
       );
 
-      setPopularMovies(response.data.results);
+      setMovies(response.data.results);
+      setTotalPages(response.data.total_pages);
     } catch (error) {
       console.error("Error:", error);
     }
@@ -136,9 +144,15 @@ export default function useMovies() {
     }
   }
 
+  const handlePagination = (event, pagenumber) => {
+    setPage(pagenumber);
+  };
+
+  const resetPage = () => {
+    setPage(1);
+  };
+
   return {
-    popularMovies,
-    getPopularMovies,
     topRatedMovies,
     getTopRatedMovies,
     initialCarrusel,
@@ -147,5 +161,12 @@ export default function useMovies() {
     getOneMovie,
     trailer,
     getTrailer,
+
+    movies,
+    getMoviesByCategory,
+    totalPages,
+    page,
+    handlePagination,
+    resetPage,
   };
 }

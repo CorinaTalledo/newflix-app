@@ -8,11 +8,11 @@ import { useEffect /* useState */ } from "react";
 import "react-multi-carousel/lib/styles.css"; */
 
 export default function Home() {
-  const { popularMovies, getPopularMovies, topRatedMovies, getTopRatedMovies } =
+  const { movies, getMoviesByCategory, topRatedMovies, getTopRatedMovies } =
     useMovies();
 
   useEffect(() => {
-    getPopularMovies();
+    getMoviesByCategory("popular");
   }, []);
 
   useEffect(() => {
@@ -23,6 +23,7 @@ export default function Home() {
     <Box component="section" sx={{ border: "1px dashed grey" }}>
       <Carrousel />
 
+      {/* Todo un componente que le llegue el titulo y la categoria */}
       <Stack
         direction="column"
         justifyContent="center"
@@ -40,12 +41,14 @@ export default function Home() {
           alignItems="center"
           spacing={3}
         >
-          {popularMovies.map((popularMovie) => (
-            <CardMovie key={popularMovie.id} movie={popularMovie} />
+          {movies.map((movie) => (
+            <CardMovie key={movie.id} movie={movie} />
           ))}
         </Stack>
       </Stack>
+      {/* TERMINA EL COMPONENTE */}
 
+      {/* REPITE EL COMPONENTE DE ARRIBA */}
       <Stack
         direction="column"
         justifyContent="center"

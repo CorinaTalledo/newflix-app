@@ -149,7 +149,7 @@ function Header() {
 
             <Button
               onClick={() => {
-                navigate("/movies");
+                navigate("/now_playing");
                 handleCloseNavMenu();
               }}
               sx={{ my: 2, color: "white", display: "block" }}
@@ -159,7 +159,7 @@ function Header() {
 
             <Button
               onClick={() => {
-                navigate("/movies");
+                navigate("/popular");
                 handleCloseNavMenu();
               }}
               sx={{ my: 2, color: "white", display: "block" }}
