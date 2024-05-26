@@ -28,8 +28,6 @@ export default function DetailMovie() {
     getTrailer();
   }, []);
 
-  console.log(trailer);
-
   const [open, setOpen] = useState(false);
   const handleOpen = () => setOpen(true);
   const handleClose = () => setOpen(false);
