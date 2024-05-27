@@ -9,22 +9,25 @@ import Error404 from "./views/Error404";
 import Footer from "./components/Footer";
 import CssBaseline from "@mui/material/CssBaseline";
 import MyList from "./views/MyList";
+import FavouritesContextProvider from "./context/FavouritesContext";
 
 function App() {
   return (
     <>
       <CssBaseline />
       <BrowserRouter>
-        <Header />
-        <Routes>
-          <Route path="/" element={<Home />} />
-          <Route path="/:category" element={<ContainMovies />} />
-          <Route path="/movie/:idMovie" element={<DetailMovie />} />
-          <Route path="/search" element={<Search />} />
-          <Route path="/my-list" element={<MyList />} />
-          <Route path="*" element={<Error404 />} />
-        </Routes>
-        <Footer />
+        <FavouritesContextProvider>
+          <Header />
+          <Routes>
+            <Route path="/" element={<Home />} />
+            <Route path="/:category" element={<ContainMovies />} />
+            <Route path="/movie/:idMovie" element={<DetailMovie />} />
+            <Route path="/search" element={<Search />} />
+            <Route path="/my-list" element={<MyList />} />
+            <Route path="*" element={<Error404 />} />
+          </Routes>
+          <Footer />
+        </FavouritesContextProvider>
       </BrowserRouter>
     </>
   );

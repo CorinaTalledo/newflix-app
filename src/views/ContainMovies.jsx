@@ -25,7 +25,6 @@ export default function ContainMovies() {
   useEffect(() => {
     resetPage();
   }, [category]);
-  console.log(category);
 
   return (
     <Box
