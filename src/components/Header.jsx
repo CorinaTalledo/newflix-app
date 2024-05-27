@@ -10,11 +10,14 @@ import {
   Button,
   Tooltip,
   MenuItem,
+  Badge,
 } from "@mui/material";
 import MenuIcon from "@mui/icons-material/Menu";
 import PlaylistPlayIcon from "@mui/icons-material/PlaylistPlay";
-import { useState } from "react";
+import FavoriteIcon from "@mui/icons-material/Favorite";
+import { useState, useContext } from "react";
 import { useNavigate } from "react-router-dom";
+import { FavouritesContext } from "../context/FavouritesContext";
 
 // const pages = [
 //   { name: "Home", path: "/" },
@@ -44,6 +47,8 @@ function Header() {
   };
 
   const navigate = useNavigate();
+
+  const { totalFavourites } = useContext(FavouritesContext);
 
   return (
     <AppBar position="static" sx={{ backgroundColor: "#212121" }}>
@@ -180,25 +185,25 @@ function Header() {
 
           {/* TODO LO RELACIONADO AL AVATAR */}
           <Box sx={{ flexGrow: 0 }}>
-            <Button
-              component="label"
-              role={undefined}
-              variant="outlined"
-              color="inherit"
-              tabIndex={-1}
-              startIcon={<PlaylistPlayIcon />}
-              onClick={() => {
-                navigate("/my-list");
-                handleCloseNavMenu();
-              }}
-            >
-              My List
-              {/* <VisuallyHiddenInput type="file" /> */}
-            </Button>
+            <Badge badgeContent={totalFavourites()} color="primary" max={50}>
+              <Button
+                fullWidth
+                component="label"
+                role={undefined}
+                variant="outlined"
+                color="inherit"
+                tabIndex={-1}
+                startIcon={<PlaylistPlayIcon />}
+                onClick={() => {
+                  navigate("/my-list");
+                  handleCloseNavMenu();
+                }}
+              >
+                My List
+                {/* <VisuallyHiddenInput type="file" /> */}
+              </Button>
+            </Badge>
 
-            {/* <IconButton onClick={handleOpenUserMenu} sx={{ p: 0 }}>
-                <Avatar alt="Remy Sharp" src="/static/images/avatar/2.jpg" />
-              </IconButton> */}
             <Menu
               sx={{ mt: "45px" }}
               id="menu-appbar"

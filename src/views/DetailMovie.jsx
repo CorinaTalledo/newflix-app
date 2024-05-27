@@ -9,9 +9,14 @@ import {
   ListItemText,
   Button,
   Modal,
+  CardActions,
 } from "@mui/material";
 import ArrowRightIcon from "@mui/icons-material/ArrowRight";
 import PlayCircleOutlineIcon from "@mui/icons-material/PlayCircleOutline";
+import { useContext } from "react";
+import { FavouritesContext } from "../context/FavouritesContext";
+import PlaylistAddIcon from "@mui/icons-material/PlaylistAdd";
+import PlaylistRemoveIcon from "@mui/icons-material/PlaylistRemove";
 
 import { useEffect, useState } from "react";
 
@@ -19,6 +24,9 @@ import useMovies from "../hooks/useMovies";
 
 export default function DetailMovie() {
   const { oneMovie, getOneMovie, trailer, getTrailer } = useMovies();
+
+  const { addFavourite, isFavourite, removeFavourite } =
+    useContext(FavouritesContext);
 
   useEffect(() => {
     getOneMovie();
@@ -56,16 +64,57 @@ export default function DetailMovie() {
           justifyContent: "space-between",
         }}
       >
-        <CardMedia
-          component="img"
-          sx={{
-            width: "30%",
-            height: "auto",
-            alignSelf: "center",
-          }}
-          image={`https://image.tmdb.org/t/p/original/${oneMovie.poster_path}`}
-          alt={oneMovie.title}
-        />
+        <Box
+          width="30%"
+          display="flex"
+          flexDirection="column"
+          alignItems="center"
+        >
+          <CardMedia
+            component="img"
+            sx={{
+              width: "85%",
+              height: "auto",
+              alignSelf: "center",
+            }}
+            image={`https://image.tmdb.org/t/p/original/${oneMovie.poster_path}`}
+            alt={oneMovie.title}
+          />
+
+          <CardActions
+            sx={{
+              width: "75%",
+            }}
+          >
+            {isFavourite(oneMovie.id) ? (
+              <Button
+                variant="outlined"
+                onClick={() => removeFavourite(oneMovie.id)}
+                startIcon={<PlaylistRemoveIcon />}
+                sx={{
+                  width: "100%",
+                  border: "2px solid white",
+                  color: "white",
+                }}
+              >
+                Remove from My List
+              </Button>
+            ) : (
+              <Button
+                variant="outlined"
+                onClick={() => addFavourite(oneMovie)}
+                startIcon={<PlaylistAddIcon />}
+                sx={{
+                  width: "100%",
+                  border: "2px solid white",
+                  color: "white",
+                }}
+              >
+                Add to My List
+              </Button>
+            )}
+          </CardActions>
+        </Box>
 
         <CardContent
           sx={{
@@ -111,6 +160,10 @@ export default function DetailMovie() {
                 onClick={handleOpen}
                 startIcon={<PlayCircleOutlineIcon />}
                 size="small"
+                sx={{
+                  border: "2px solid white",
+                  color: "white",
+                }}
               >
                 Watch Trailer
               </Button>
