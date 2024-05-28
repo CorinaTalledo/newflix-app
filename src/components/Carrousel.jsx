@@ -13,12 +13,12 @@ import { useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 
 export default function Carrousel() {
-  const { initialCarrusel, getPopularCarrusel } = useMovies();
+  const { getMoviesByCategory, movies } = useMovies();
 
   const navigate = useNavigate();
 
   useEffect(() => {
-    getPopularCarrusel();
+    getMoviesByCategory("popular");
   }, []);
 
   const responsive = {
@@ -85,7 +85,7 @@ export default function Carrousel() {
         slidesToSlide={1}
         swipeable
       >
-        {initialCarrusel.map((item) => (
+        {movies.slice(0, 5).map((item) => (
           <Card
             key={item.id}
             sx={{
