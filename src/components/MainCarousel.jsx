@@ -12,7 +12,7 @@ import useMovies from "../hooks/useMovies";
 import { useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 
-export default function Carrousel() {
+export default function MainCarrousel() {
   const { getMoviesByCategory, movies } = useMovies();
 
   const navigate = useNavigate();
@@ -49,11 +49,8 @@ export default function Carrousel() {
     <Box
       component="section"
       sx={{
-        width: "100vw",
+        width: "auto",
         height: "500px",
-        overflow: "hidden",
-        /*         position: "relative",
-         */
       }}
     >
       <Carousel
@@ -89,22 +86,21 @@ export default function Carrousel() {
           <Card
             key={item.id}
             sx={{
-              width: "100%",
-              height: "100%",
+              /* width: "100vw", */
+              height: "500px",
               position: "relative",
               overflow: "hidden",
-              /*               objectFit: "cover",
-               */
             }}
           >
             <CardMedia
               component="img"
               image={`https://image.tmdb.org/t/p/original/${item.backdrop_path}`}
               sx={{
-                width: "100%",
+                display: "block",
                 height: "100%",
-                objectFit: "fill",
-                position: "relative",
+                width: "100%",
+                objectFit: "cover",
+                objectPosition: "top",
               }}
             />
             <Box>
@@ -115,20 +111,31 @@ export default function Carrousel() {
                   top: "50%",
                   left: "50%",
                   transform: "translate(-50%, -50%)",
-                  p: 8,
+                  p: 4,
                   backgroundColor: "rgba(128, 128, 128, 0.85)",
+                  display: "flex",
+                  flexDirection: "column",
+                  justifyContent: "space-around",
+                  width: "50%",
+                  height: "50%",
                 }}
               >
-                <Typography variant="h5" component="div" textAlign="center">
+                <Typography variant="h5" component="h5" textAlign="center">
                   {item.title}
                 </Typography>
-                <Typography variant="body1" component="div" textAlign="center">
+                <Typography
+                  variant="body1"
+                  component="p"
+                  paragraph
+                  textAlign="center"
+                >
                   {item.overview}
                 </Typography>
 
                 <Button
                   variant="contained"
                   onClick={() => navigate(`/movie/${item.id}`)}
+                  width="20%"
                 >
                   See more
                 </Button>
