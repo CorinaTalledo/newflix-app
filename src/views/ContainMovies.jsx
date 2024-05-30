@@ -3,7 +3,6 @@ import CardMovie from "../components/CardMovie";
 import useMovies from "../hooks/useMovies";
 import { useEffect } from "react";
 import { useParams } from "react-router-dom";
-import { Height } from "@mui/icons-material";
 
 export default function ContainMovies() {
   const { category } = useParams();
