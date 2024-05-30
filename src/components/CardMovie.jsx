@@ -8,9 +8,9 @@ import {
   Box,
   CardActions,
 } from "@mui/material";
-import PlaylistAddIcon from "@mui/icons-material/PlaylistAdd";
-import PlaylistRemoveIcon from "@mui/icons-material/PlaylistRemove";
-import { useNavigate } from "react-router-dom";
+import { PlaylistAdd, PlaylistRemove } from "@mui/icons-material";
+/* import PlaylistRemoveIcon from "@mui/icons-material/PlaylistRemove";
+ */ import { useNavigate } from "react-router-dom";
 import { useContext } from "react";
 import { FavouritesContext } from "../context/FavouritesContext";
 
@@ -41,7 +41,6 @@ export default function CardMovie({ movie }) {
         alignItems="center"
         height="20%"
         justifyContent="space-between"
-        sx={{ border: "1px solid red" }}
       >
         <CardContent>
           <Typography gutterBottom variant="subtitle1" component="span">
@@ -55,14 +54,14 @@ export default function CardMovie({ movie }) {
               aria-label="add to favorites"
               onClick={() => removeFavourite(movie.id)}
             >
-              <PlaylistRemoveIcon />
+              <PlaylistRemove color="error" />
             </IconButton>
           ) : (
             <IconButton
               aria-label="add to favorites"
               onClick={() => addFavourite(movie)}
             >
-              <PlaylistAddIcon />
+              <PlaylistAdd color="success" />
             </IconButton>
           )}
         </CardActions>
