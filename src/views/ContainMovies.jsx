@@ -1,10 +1,9 @@
-import CardMovie from "../components/CardMovie";
-
 import { Typography, Pagination, Box, Stack } from "@mui/material";
-
-import { useEffect } from "react";
+import CardMovie from "../components/CardMovie";
 import useMovies from "../hooks/useMovies";
+import { useEffect } from "react";
 import { useParams } from "react-router-dom";
+import { Height } from "@mui/icons-material";
 
 export default function ContainMovies() {
   const { category } = useParams();
@@ -30,15 +29,15 @@ export default function ContainMovies() {
     <Box
       component="section"
       sx={{
-        p: 2,
-        border: "1px dashed grey",
         display: "flex",
         flexDirection: "column",
         alignItems: "center",
         alignContent: "center",
+        justifyContent: "space-between",
+        minHeight: "100vh",
       }}
     >
-      <Typography variant="h2" gutterBottom>
+      <Typography variant="h2" gutterBottom color="white" sx={{ mt: "3%" }}>
         {category === "popular" ? "Popular Movies" : "Last Releases"}
       </Typography>
 
@@ -49,7 +48,7 @@ export default function ContainMovies() {
         alignContent="center"
         flexWrap="wrap"
         gap={5}
-        sx={{ width: "90%", border: "1px dashed grey" }}
+        sx={{ width: "95%", margin: "3%" }}
       >
         {movies.map((movie) => (
           <CardMovie key={movie.id} movie={movie} />
@@ -62,6 +61,7 @@ export default function ContainMovies() {
         onChange={handlePagination}
         variant="outlined"
         shape="rounded"
+        color="primary"
       />
     </Box>
   );
