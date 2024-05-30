@@ -11,14 +11,14 @@ import {
   Modal,
   CardActions,
 } from "@mui/material";
-import ArrowRightIcon from "@mui/icons-material/ArrowRight";
-import PlayCircleOutlineIcon from "@mui/icons-material/PlayCircleOutline";
-import { useContext } from "react";
+import {
+  ArrowRight,
+  PlayCircleOutline,
+  PlaylistAdd,
+  PlaylistRemove,
+} from "@mui/icons-material";
 import { FavouritesContext } from "../context/FavouritesContext";
-import PlaylistAddIcon from "@mui/icons-material/PlaylistAdd";
-import PlaylistRemoveIcon from "@mui/icons-material/PlaylistRemove";
-
-import { useEffect, useState } from "react";
+import { useEffect, useState, useContext } from "react";
 
 import useMovies from "../hooks/useMovies";
 
@@ -43,11 +43,11 @@ export default function DetailMovie() {
   return (
     <Box
       component="section"
-      height="79vh"
+      height="100vh"
       width="100vw"
       sx={{
         display: "flex",
-        /* alignItems: "center", */
+        alignItems: "center",
         backgroundImage: `linear-gradient(rgba(0, 0, 0, 0.7),rgba(0, 0, 0, 0.7)), url(https://image.tmdb.org/t/p/original/${oneMovie.backdrop_path})`,
         backgroundSize: "cover",
         backgroundPosition: "center",
@@ -90,10 +90,9 @@ export default function DetailMovie() {
               <Button
                 variant="outlined"
                 onClick={() => removeFavourite(oneMovie.id)}
-                startIcon={<PlaylistRemoveIcon />}
+                startIcon={<PlaylistRemove />}
                 sx={{
                   width: "100%",
-                  border: "2px solid white",
                   color: "white",
                 }}
               >
@@ -103,10 +102,9 @@ export default function DetailMovie() {
               <Button
                 variant="outlined"
                 onClick={() => addFavourite(oneMovie)}
-                startIcon={<PlaylistAddIcon />}
+                startIcon={<PlaylistAdd />}
                 sx={{
                   width: "100%",
-                  border: "2px solid white",
                   color: "white",
                 }}
               >
@@ -123,32 +121,25 @@ export default function DetailMovie() {
             justifyContent: "space-evenly",
             color: "white",
             width: "60%",
-            border: "3px solid white",
           }}
         >
           <Box
             sx={{
-              border: "3px solid white",
               display: "flex",
               flexDirection: "column",
               justifyContent: "space-evenly",
-              /*               height: "80%",
-               */
             }}
           >
             <Box
               sx={{
-                border: "3px solid red",
                 display: "flex",
                 flexDirection: "row",
                 justifyContent: "space-evenly",
                 height: "80%",
               }}
             >
-              <Box sx={{ border: "3px solid red", width: "70%" }}>
-                <Typography variant="h4" /* component="div" */>
-                  {oneMovie.title}
-                </Typography>
+              <Box sx={{ width: "70%" }}>
+                <Typography variant="h4">{oneMovie.title}</Typography>
 
                 <Typography variant="subtitle1" gutterBottom component="span">
                   {oneMovie.release_date &&
@@ -158,10 +149,9 @@ export default function DetailMovie() {
 
               <Button
                 onClick={handleOpen}
-                startIcon={<PlayCircleOutlineIcon />}
+                startIcon={<PlayCircleOutline />}
                 size="small"
                 sx={{
-                  border: "2px solid white",
                   color: "white",
                 }}
               >
@@ -180,7 +170,7 @@ export default function DetailMovie() {
               {oneMovie.genres &&
                 oneMovie.genres.map((genre) => (
                   <ListItem disableGutters key={genre.id}>
-                    <ArrowRightIcon fontSize="large" />
+                    <ArrowRight fontSize="large" />
                     <ListItemText primary={genre.name} />
                   </ListItem>
                 ))}
